@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICLUSTER</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            background: #333;
+        }
+        canvas {
+            background: #333;
+            width: 400px;
+            height: 400px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        canvas.width = canvas.height = 400;
+        const ctx = canvas.getContext('2d');
+
+        const path = [];
+        const N = 90;
+        var t = 0;
+
+        for (var i=0; i<N; i++) {
+            var theta = t * Math.PI/(N-1)
+            path[i] = {
+                x: 200 + 100 * Math.cos(theta),
+                y: 200 + 100 * Math.sin(theta) * Math.cos(theta)
+            }
+            t++;
+        }
+        
+        const animate = () => {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            var theta = t * Math.PI/(N-1)
+            path.push({
+                x: 200 + 100 * Math.cos(theta),
+                y: 200 + 100 * Math.sin(theta) * Math.cos(theta)
+            })
+            path.shift();
+            t++;
+
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#fff';
+            ctx.beginPath();
+            ctx.moveTo(path[0].x, path[0].y);
+            for (var i=1; i<N; i++) {
+                ctx.lineTo(path[i].x, path[i].y);
+            }
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        animate();
+
+    </script>
+</body>
+</html>
