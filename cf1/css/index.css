@@ -1,0 +1,44 @@
+.button {
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #EB455F;
+    min-width: 160px;
+    min-width: 64px;
+    margin: 0 2px;
+    background: #FFFFFF;
+    background: #EB455F;
+    color: #FFFFFF;
+    border-color: #181823;
+    transition: .2s;
+    border-color: #FCFFE7;
+    color: #3C4048;
+    background: #EAEAEA;
+}
+
+.button.active {
+    background: #EB455F;
+    color: #EAEAEA;
+}
+
+/* .button:hover {
+    box-shadow: 0 0 4px #ddd;
+    border-color: #FCFFE7;
+} */
+
+.button:disabled {
+    border-color: #3C4048;
+    cursor: auto;
+}
+
+.button:first-child {
+    margin-left: 0;
+}
+
+div[id^="slide"], div[id^="dem"] {
+    transition: opacity 1.2s;
+}
+
+div[id^="slide"].hide, div[id^="dem"].hide {
+    opacity: 0;
+    visibility: hidden;
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>CONVEXITE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <style>
+        * {
+            font-family: Roboto;
+        }
+        h2 {
+            /* font-family: 'Patrick Hand', cursive; */
+            border: 4px solid #30E3DF !important;
+            border-right: 4px solid #30E3DF !important;
+            border: 1px solid #03001C;
+        }
+        h5 span {
+            /* font-family: 'Patrick Hand', cursive; */
+            font-size: 16px;
+        }
+        .nc {
+            border: 2px solid #ddd;
+            /* border-radius: 4px; */
+            box-shadow: 0 0 8px #ddd;
+            min-height: 80vh;
+        }
+        .box {
+            border-left: 4px solid #30E3DF !important;
+            background: #fcfcfc;
+        }
+        .box2 {
+            border-left: 4px solid #F94A29 !important;
+            background: #fcfcfc;
+        }
+        .box3 {
+            border-left: 4px solid #00FFAB !important;
+            background: #fcfcfc;
+        }
+        .proof {
+            border-left: 4px solid #191825 !important;
+            background: #fcfcfc;
+            animation: fadein 1.5s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; height: 0px; }
+            to   { opacity: 1; height: 100%; }
+        }
+        #loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #loading canvas {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container">
+        <div class="nc d-flex flex-column my-4 p-2">
+            <div class="np d-flex">
+                <button id="prev" class="button">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <button id="next" class="button">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+                <button id="quest" class="button">
+                    <i class="far fa-question-circle"></i>
+                </button>
+            </div>
+            <h2 class="px-4 py-1 mx-auto my-4">Convexité</h2>
+            <div id="slide-0">
+                <p style="color: #6F1AB6; font-size: 18px; font-style: italic; font-family: Roboto; font-weight: bold;">Réalisé par AYOUB SIRAI et SAMIRA MONFI.</p>
+                <div class="box px-2 my-4">
+                    <h5>Définition <span>( Segment \(AB\) )</span></h5>
+                    <p>Soient \(A\) et \(B\) deux points d'un espace affine \(E\). Le segment \(AB\), noté
+                        \( \left[AB\right]\), est l'ensemble des barycentres de \(A\) et \(B\) affectés de coefficients tous deux positifs.</p>
+                    <p>i.e. \( \left[AB\right] = \{ \alpha A + (1-\alpha) B \mid \alpha \in \left[0, 1\right] \} \)</p>
+                </div>
+                <div class="box px-2 my-4">
+                    <h5>Définition <span>( partie convexe )</span></h5>
+                    <p>Une partie \(C\) d'un espace affine \(E\) est dite convexe si pour tout couple
+                        \((A, B)\) de points de \(C\) le segment \( \left[AB\right] \) est inclus dans \(C\).</p>
+                </div>
+                <div class="d-flex flex-column px-2 my-4 justify-content-center align-items-center">
+                    <img class="img-fluid" src="img/convexe-example.png" alt="partie convexe exemple" style="max-width: 300px;">
+                </div>
+            </div>
+            <div id="slide-1" class="hide d-none">
+                <div class="box2 px-2 my-4">
+                    <h5>Proposition 1</h5>
+                    <p>Une partie \(C\) d'un espace affine \(E\) est convexe si et seulement si tout
+                        barycentre de points de \(C\) affectés de coefficients tous positifs appartient à \(C\).</p>
+                </div>
+                <div class="box2 px-2 my-4">
+                    <h5>Proposition 2</h5>
+                    <p>Toute intersection de convexes est convexe.</p>
+                </div>
+            </div>
+            
+            <div id="slide-2" class="hide d-none">
+                <div class="box px-2 my-4">
+                    <h5>Définition <span>( Enveloppe convexe )</span></h5>
+                    <p>Soit \(A\) une partie non vide d'un espace affine \(E\). On appelle enveloppe
+                        convexe de \(A\) l'intersection de tous les convexes de \(E\) contenant \(A\).</p>
+                </div>
+                <div class="box2 px-2 my-4">
+                    <h5>Proposition 3</h5>
+                    <p>L'enveloppe convexe d'une partie non vide \(A\) d'un espace affine \(E\) est
+                        le plus petit convexe de \(E\) contenant \(A\). C'est aussi l'ensemble de tous les barycentres
+                        de points de \(A\) affectés de coefficients tous positifs.</p>
+                </div>
+                <div id="dem-2" class="box px-2 my-4 hide d-none">
+                    <h5>Démonstration</h5>
+                    <p>Soit \(A\) une partie non vide d'un espace affine \(E\) et \(C_A\) la famille de
+                        tous les convexes de \(E\) contenant \(A\). L'enveloppe convexe \(Conv(A) = \bigcap_{
+                        C \in C_A} C\) de \(A\) est
+                        convexe comme intersection de convexes et contient \(A\). Tout convexe \(C\) contenant \(A\)
+                        appartient à \(C_A\) et contient donc \(Conv(A)\), ce qui montre que \(Conv(A)\) est le plus petit
+                        convexe de \(E\) contenant \(A\).
+                        </p>
+                    <p>Soit \(\hat{A}\) l'ensemble de tous les barycentres de points de \(A\) affectés de coefficients
+                        tous positifs. Tout point \(M\) de \(A\) est barycentre de la famille à un élément \((A, 1)\) et
+                        appartient donc à \(\hat{A}\). Par ailleurs, \(\hat{A}\) est convexe par associativité du barycentre. Il en
+                        résulte que \(Conv(A)\) est inclus dans \(\hat{A}\).</p>
+                    <p>Soit \(C\) un convexe contenant \(A\). Tout point de \(\hat{A}\) est barycentre à coefficients tous
+                        positifs de points de \(C\), donc appartient à \(C\). Il en résulte que \(\hat{A}\) est inclus dans \(C\) pour
+                        tout \(C \in C_A\), et est donc inclus dans \(Conv(A)\), d'où \(\hat{A} = Conv(A)\). </p>
+                </div>
+            </div>
+
+            <div id="slide-3" class="hide d-none">
+                <div class="box3 px-2 my-4">
+                    <h5>Exemples</h5>
+                    <p>l'enveloppe convexe de deux points \(A\) et \(B\) est le segment \( \left[AB\right] \) ; l'enveloppe
+                        convexe de 3 points \(A, B, C\) du plan est le triangle plein \(ABC\).</p>
+                </div>
+                <div class="d-flex flex-column px-2 my-4 justify-content-center align-items-center">
+                    <img class="img-fluid" src="img/enveloppe-exemple.png" alt="enveloppe exemple" style="max-width: 300px;" />
+                </div>
+            </div>
+
+            <div id="slide-4" class="hide d-none">
+                <div class="box2 px-2 my-4">
+                    <h5>Proposition 4 <span>(Demi-espaces, régionnement)</span></h5>
+                    <p>Soit \(E\) un espace affine et \(H\) un hyperplan affine de \(E\). La relation \(\Re\)
+                        définie par « \(A \Re B\) si et seulement si \(\left[AB\right]\cap H = \varnothing \) » est une relation d'équivalence sur
+                        le complémentaire \( E \setminus H \) de \(H\) dans \(E\) qui partage \(E \setminus H\) en exactement deux classes.</p>
+                    <p>Ces classes sont appelés demi-espaces ouverts délimités par \(H\). Les demi-espaces
+                        fermés sont obtenus en prenant leurs réunions avec \(H\). Si deux points \(A\) et \(B\) sont en
+                        relation par \(\Re\), on dit que \(A\) et \(B\) sont du même côté de \(H\).</p>
+                </div>
+                <div id="dem-4" class="box px-2 my-4 hide d-none">
+                    <h5>Démonstration</h5>
+                    <p>Soit \((O, \vec{e_1}, ... , \vec{e_n})\) un repère cartésien de \(E\) dont l'origine \(O\) appartient à \(H\) et les vecteurs \(\vec{e_1}, ... , \vec{e_{n-1}}\) appartiennent à l'hyperplan vectoriel \(\vec{H}\). L'hyperplan \(H\) admet \(x_n = 0\) comme équation cartésienne dans ce repère. Soient \(A\) et
+                        \(B\) deux points de \(E\) n'appartenant pas à \(H\), de coordonnées respectives \((a_1, ... , a_n)\)
+                        et \((b_1, ... , b_n)\) dans ce repère. On a donc \(a_nb_n \neq 0\). Tout point \(M\) du segment \([AB]\)
+                        s'écrit \(\alpha A + (1 - \alpha)B\) pour un \(\alpha \in [0, 1]\). Ce point appartient à \(H\) si et seulement si
+                        \(\alpha a_n + (1 - \alpha)b_n = 0\), soit encore \(\alpha(b_n - a_n) = b_n\). Cette équation en \(\alpha\) admet une
+                        solution dans \([0, 1]\) si et seulement si an et \(b_n\) sont de signes opposés. Le segment \([AB]\)
+                        rencontre donc \(H\) si et seulement si \(a_nb_n < 0\). Autrement dit, \(A\Re B\) si et seulement si
+                        \(a_n\) et \(b_n\) sont de même signe. Il en résulte immédiatement que la relation \(\Re\) est une
+                        relation d'équivalence sur \(E \setminus H\) et que les deux classes d'équivalence pour \(\Re\) sont
+                        \(\left\{M \in E \mid x_n > 0\right\}\) et \(\left\{M \in E \mid x_n < 0\right\}\).</p>
+                </div>
+            </div>
+            <div id="slide-5" class="hide d-none">
+                <div class="box px-2 my-4">
+                    <h5>Définition <span>( Polyèdres convexes )</span></h5>
+                    <p>On appelle polyèdre convexe toute partie bornée non vide d'un espace
+                        affine qui peut s'écrire comme intersection d'un nombre fini de demi-espaces fermés.</p>
+                </div>
+                <div class="box2 px-2 my-4">
+                    <h5>Proposition 5</h5>
+                    <p>Une partie d'un espace affine \(E\) est un polyèdre convexe si et seulement si elle est l'enveloppe convexe d'un nombre fini de points de \(E\).</p>
+                </div>
+                <div id="dem-5" class="box px-2 my-4 hide d-none">
+                    <h5>Démonstration</h5>
+                    <p>Il résulte immédiatement de la définition que toute intersection d'un polyèdre
+                        convexe et d'un sous-espace affine est vide ou est un polyèdre convexe (un sous-espace
+                        affine peut s'écrire comme intersection d'un nombre fini d'hyperplans affines et un hyperplan affine est l'intersection des deux demi-espaces fermés qu'il limite).
+                        </p>
+                    <p>De même
+                        toute intersection d'un nombre fini de polyèdres convexes est vide ou est un polyèdre
+                        convexe.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
