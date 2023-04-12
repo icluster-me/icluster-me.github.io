@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        canvas {
+            width: 600px;
+            height: 600px;
+            /* background: #333333; */
+            /* border: 1px solid #333; */
+        }
+        .box {
+            display: flex;
+            justify-content: space-around;
+        }
+        button.text {
+            font-size: 48px;
+            cursor: pointer;
+            transition: .2s;
+            font-weight: 700;
+            font-style: italic;
+            display: inline;
+            margin: auto 16px;
+            outline: none;
+            border: 2px solid transparent;
+            padding: 4px 16px;
+            border-radius: 4px;
+            background: #fff;
+        }
+        button.text.selected {
+            border: 2px solid dodgerblue;
+        }
+        button.text:hover {
+            text-shadow: 0 0 4px dodgerblue;
+        }
+
+        button.text:nth-child(1) {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <div class="box">
+        <button id="reset-btn" class="text selected">RESET</button>
+        <button id="play-btn" class="text">PLAY</button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
