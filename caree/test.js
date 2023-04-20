@@ -99,6 +99,7 @@ function animate() {
 
 
 function init() {
+    document.querySelector('button').style.display = 'none';
     var id = setInterval(() => {
         n++;
         if (n > dh) {
