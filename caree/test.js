@@ -68,7 +68,7 @@ function Log(text) {
     document.getElementById('log').innerHTML = text;
 }
 
-var n = 1, p = 1;
+var n = 0, p = 1;
 
 
 function animate() {
@@ -90,17 +90,34 @@ function animate() {
 
     var err = (n0 == N) ? 'walo 🙃': '******';
 
-    Log(`n = ${n}, p = ${p}, nombre de carrés = ${N}<br/> n + p - pgcd(n, p) = ${n0}<br/> erreur? : ${err}`);
+    Log(`n = ${n}, p = ${p}, nombre de carrés = ${N}<br/> n + p - pgcd(n, p) = ${n0}, erreur? : ${err}`);
 
 
     drawGrid();
     drawDiagonal(n, p);
 }
 
+const prButton = document.getElementById('ctrl');
+
+var sim_status = 'none';
+
+prButton.addEventListener('click', evt => {
+    if (sim_status === 'pause') {
+        prButton.textContent = 'pause';
+        sim_status = 'play';
+    } else {
+        prButton.textContent = 'play';
+        sim_status = 'pause';
+    }
+})
+
 
 function init() {
-    document.querySelector('button').style.display = 'none';
     var id = setInterval(() => {
+        if (sim_status === 'none') {
+            sim_status = 'pause';
+        }
+        else if (sim_status === 'pause') return;
         n++;
         if (n > dh) {
             n = 1;
@@ -111,8 +128,10 @@ function init() {
             p++;
         }
         animate();
-    }, 400);
+    }, 600);
 }
+
+init();
 
 // n = 12;
 // p = 1;
