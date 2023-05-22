@@ -106,6 +106,36 @@ const QA = [
         ],
         _ca: 0
     },
+    {
+        _qa: [
+            'Soit\\( X \\) et \\( Y \\) deux variables aléatoires discrètes indépendantes. Quelle est la formule permettant de calculer la probabilité conjointe \\( P(X=x, Y=y) \\)?',
+            '\\( P(X=x) + P(Y=y) \\)',
+            '\\( P(X=x)P(Y=y) \\)',
+            '\\( P(X=x) - P(Y=y) \\)',
+            '\\( 1 - (P(X=x) + P(Y=y)) \\)',
+        ],
+        _ca: 1
+    },
+    {
+        _qa: [
+            'Soit \\( X \\) et \\( Y \\) deux variables aléatoires discrètes. Quelle est la condition nécessaire pour que \\( X \\) et \\( Y \\) soient indépendantes ?',
+            '\\( Var(X) = Var(Y) \\)',
+            '\\( E(X) = E(Y) \\)',
+            '\\( Cov(X, Y) = 0 \\)',
+            '\\( Corr(X, Y) = 1 \\)',
+        ],
+        _ca: 2
+    },
+    {
+        _qa: [
+            'Soient \\( X \\) et \\( Y \\) deux variables aléatoires discrètes définies sur le même espace probabilisé \\( \\Omega \\). Quelle est la formule pour calculer la variance de la somme \\( X + Y \\) ?',
+            '\\( V(X + Y) = V(X) + V(Y) + 2Cov(X, Y) \\)',
+            '\\( V(X + Y) = V(X) + V(Y) - 2Cov(X, Y) \\)',
+            '\\( V(X + Y) = V(X) + V(Y) + Cov(X, Y) \\)',
+            '\\( V(X + Y) = V(X) + V(Y) - Cov(X, Y) \\)',
+        ],
+        _ca: 0
+    },
 ];
 
 function insertNewCard(cardHolder, cardId) {
