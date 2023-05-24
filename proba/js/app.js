@@ -68,21 +68,21 @@ const QA = [
     },
     {
         _qa: [
-            'On effectue deux tirages sans remise dans une urne contenant n boules. X la v.a égale au plus petit n° obtenu, Y la v.a égale au plus grand n° obtenu. \\( P(Y = j) = ? \\)',
-            '\\( \\frac{2(j-1)}{n(n+1)} \\)',
-            '\\( \\frac{2(j-1)}{n(n-1)} \\)',
-            '\\( \\frac{2(j+1)}{n(n+1)} \\)',
-            '\\( \\frac{2(j+1)}{n(n-1)} \\)',
-        ],
-        _ca: 1
-    },
-    {
-        _qa: [
             'Si \\( X \\) et \\( Y \\) sont deux variables aléatoires définies sur un même univers \\( \\Omega \\), admettant une espérance, alors :',
             '\\( E(X+Y) = E(XY) \\)',
             '\\( E(X+Y) = E(X) + E(Y) \\)',
             '\\( E(X+Y) = E(X) - E(Y) \\)',
             '\\( E(X+Y) = 0 \\)',
+        ],
+        _ca: 1
+    },
+    {
+        _qa: [
+            'On effectue deux tirages sans remise dans une urne contenant n boules. X la v.a égale au plus petit n° obtenu, Y la v.a égale au plus grand n° obtenu. \\( P(Y = j) = ? \\)',
+            '\\( \\frac{2(j-1)}{n(n+1)} \\)',
+            '\\( \\frac{2(j-1)}{n(n-1)} \\)',
+            '\\( \\frac{2(j+1)}{n(n+1)} \\)',
+            '\\( \\frac{2(j+1)}{n(n-1)} \\)',
         ],
         _ca: 1
     },
@@ -176,9 +176,8 @@ function pickRandomPlayer(callback = undefined) {
 
         if (counter == 0) {
             switch (currentQID) {
-                case 1: cardId = 1; break;
                 case 2: cardId = 22; break;
-                case 3: cardId = 21; break;
+                case 4: cardId = 21; break;
             }
         }
 
