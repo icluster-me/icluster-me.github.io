@@ -325,7 +325,7 @@ function showQABoard() {
     u('#s-card img').attr('src', 'ascii3/' + playerName[0] + '.png');
     u('#s-card p').text(playerName);
 
-    qaQueue[2] = timerCountDown(120, () => {
+    qaQueue[2] = timerCountDown(520, () => {
         markCorrectAnswer(qaQueue[1]);
     })
 }
