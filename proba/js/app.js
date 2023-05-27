@@ -176,6 +176,7 @@ function pickRandomPlayer(callback = undefined) {
 
         if (counter == 0) {
             switch (currentQID) {
+                case 1: cardId = 1; break;
                 case 2: cardId = 22; break;
                 case 4: cardId = 21; break;
             }
@@ -249,7 +250,7 @@ qaList.forEach((qa, idx) => {
             if (qaQueue[2] != -1) {
                 clearInterval(qaQueue[2]);
                 u('#countdown').text(
-                    (selectedAnswer == qaQueue[1]) ? '😎 VRAI 😎': '😑 FAUX 😑'
+                    (selectedAnswer == qaQueue[1]) ? '😎 CORRECT 😎': '🙊 WRONG 🙊'
                 )
 
                 // u('.countdown-container').addClass('d-none');

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>LAB</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <style>
+        * {
+            font-family: Roboto;
+        }
+
+        table td {
+          text-align: center;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col col-md-8 col-lg-6" id="loi-conjointe-e0">
+                <div class="table-responsive my-4">
+                    <table class="table table-striped table-hover table-bordered table-sm table-light">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="text-center">\( Y \setminus X \)</th>
+                          <th scope="col" class="text-center">1</th>
+                          <th scope="col" class="text-center">2</th>
+                          <th scope="col" class="text-center">3</th>
+                          <th scope="col" class="text-center">4</th>
+                          <th scope="col" class="text-center">5</th>
+                          <th scope="col" class="text-center">6</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- <tr>
+                            <th scope="row">1</th>
+                            <td class="text-center">\( \frac{1}{36} \)</td>
+                            <td class="text-center">\( \frac{1}{36} \)</td>
+                            <td class="text-center">\( \frac{1}{36} \)</td>
+                            <td class="text-center">\( \frac{1}{36} \)</td>
+                            <td class="text-center">\( \frac{1}{36} \)</td>
+                            <td class="text-center">\( \frac{1}{36} \)</td>
+                        </tr> -->
+                      </tbody>
+                  
+                      <caption>
+                        Loi conjointe du couple \( (X, Y ) \), \( \frac{1}{36} \approx 0.028 \), \( \frac{1}{18} \approx 0.056 \)
+                      </caption>
+                  
+                    </table>
+                  </div>
+            </div>
+
+            <div class="col col-md-8 col-lg-6" id="loi-conjointe-e1">
+              <div class="table-responsive my-4">
+                  <table class="table table-striped table-hover table-bordered table-sm table-light">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-center">\( Y^* \setminus X^* \)</th>
+                        <th scope="col" class="text-center">1</th>
+                        <th scope="col" class="text-center">2</th>
+                        <th scope="col" class="text-center">3</th>
+                        <th scope="col" class="text-center">4</th>
+                        <th scope="col" class="text-center">5</th>
+                        <th scope="col" class="text-center">6</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                
+                    <caption>
+                      <!-- test -->
+                    </caption>
+                
+                  </table>
+                </div>
+          </div>
+        </div>
+        
+        <hr class="hr">
+
+        <div class="row">
+          <div class="col col-md-7">
+            <canvas id="myChart"></canvas>
+          </div>
+          <div class="col col-md-5">
+            <div class="row">
+              <div class="d-flex justify-content-end align-items-start">
+                <button id="start" type="button" class="btn btn-outline-success mx-2" data-mdb-ripple-color="#000000">start</button>
+                <button id="reset" type="button" class="btn btn-outline-primary" data-mdb-ripple-color="#000000">reset</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="d-flex justify-content-start align-items-start">
+                <img id="dice-1" src="d/1.jpg" alt="dice" class="img-fluid" width="48px">
+                <img id="dice-2" src="d/2.jpg" alt="dice" class="img-fluid" width="48px">
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="d-flex justify-content-start align-items-start my-2">
+                <p>\( N = \) <span id="n-counter">0</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ideal_p = [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+        ];
+
+        var N = 0;
+
+        function init_lc(lc_id) {
+          var _lc = u('#' + lc_id + ' table').nodes[0];
+
+          for (var i=1; i<=6; i++) {
+            var row = _lc.insertRow(i);
+            row.insertCell(0).textContent = i;
+
+            for (var j=1; j<=6; j++) {
+              var cell = row.insertCell(j);
+              cell.setAttribute('data-cid', i + ':' + j);
+              if (i == j) {
+                cell.textContent = '\\( \\frac{1}{36} \\)';
+                cell.textContent = '0.028';
+                ideal_p[i-1][j-1] = 0.028;
+              } else if (j < i) {
+                cell.textContent = '0';
+                ideal_p[i-1][j-1] = 0;
+              } else {
+                cell.textContent = '\\( \\frac{1}{18} \\)';
+                cell.textContent = '0.056';
+                ideal_p[i-1][j-1] = 0.056;
+              }
+            }
+          }
+        }
+
+        function update_lc(lc_id, _a) {
+          for (var i=1; i<=6; i++) {
+            for (var j=1; j<=6; j++) {
+              var e = document.querySelector('#' + lc_id + ' [data-cid="' + i + ':' + j + '"]');
+              // console.log(e);
+              e.innerHTML = _a[i-1][j-1].toFixed(4);
+            }
+          }
+        }
+
+        init_lc('loi-conjointe-e0');
+        init_lc('loi-conjointe-e1');
+
+        var pxy = [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+        ];
+
+        var _pxy = [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+        ];
+
+        update_lc('loi-conjointe-e1', pxy);
+
+        function reset() {
+          N = 0;
+          u('#n-counter').text('0');
+
+          pxy = [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+        ];
+
+        _pxy = [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+        ];
+
+          chart.data.datasets[1].data = chart.data.datasets[0].data.map(e => 0);
+          chart.update();
+
+          update_lc('loi-conjointe-e1', pxy);
+        }
+
+        function _lancer() {
+          N++;
+          u('#n-counter').text(N);
+          var _x = Math.floor(Math.random() * 6);
+          var _y = Math.floor(Math.random() * 6);
+
+          var x = (_x < _y) ? _x: _y;
+          var y = (_x > _y) ? _x: _y;
+          _pxy[x][y]++;
+          for (var i=0; i<6; i++) {
+            for (var j=0; j<6; j++) {
+              pxy[i][j] = _pxy[i][j] / N;
+            }
+          }
+
+          // chart.data.datasets[1].data = [
+          //       ...pxy[0],
+          //       ...pxy[1],
+          //       ...pxy[2],
+          //       ...pxy[3],
+          //       ...pxy[4],
+          //       ...pxy[5],
+          // ];
+          // chart.update();
+
+          update_lc('loi-conjointe-e1', pxy);
+          u('#dice-1').attr('src', 'd/' + (x+1) + '.jpg');
+          u('#dice-2').attr('src', 'd/' + (y+1) + '.jpg');
+        }
+
+        var _n = 0;
+        var _id = 0;
+
+        u('#start').on('click', () => {
+            if (_id != 0) return;
+            _id = setInterval(() => {
+            _lancer();
+            _n++;
+            if (_n % 10 == 0) {
+              chart.data.datasets[1].data = [
+                    ...pxy[0],
+                    ...pxy[1],
+                    ...pxy[2],
+                    ...pxy[3],
+                    ...pxy[4],
+                    ...pxy[5],
+              ];
+              chart.update();
+            }
+          }, 30);
+        });
+
+        u('#reset').on('click', () => {
+          if (_id != 0) clearInterval(_id);
+          _id = 0;
+          reset();
+        })
+
+
+        const ctx = document.getElementById('myChart');
+
+        const chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['(1, 1)', '(1, 2)', '(1, 3)', '(1, 4)', '(1, 5)', '(1, 6)', '(2, 1)', '(2, 2)', '(2, 3)', '(2, 4)', '(2, 5)', '(2, 6)', '(3, 1)', '(3, 2)', '(3, 3)', '(3, 4)', '(3, 5)', '(3, 6)', '(4, 1)', '(4, 2)', '(4, 3)', '(4, 4)', '(4, 5)', '(4, 6)', '(5, 1)', '(5, 2)', '(5, 3)', '(5, 4)', '(5, 5)', '(5, 6)', '(6, 1)', '(6, 2)', '(6, 3)', '(6, 4)', '(6, 5)', '(6, 6)'],
+            datasets: [{
+              label: 'P(Y = i, X = j)',
+              data: [
+                ...ideal_p[0],
+                ...ideal_p[1],
+                ...ideal_p[2],
+                ...ideal_p[3],
+                ...ideal_p[4],
+                ...ideal_p[5],
+                ],
+              borderWidth: 1,
+              borderColor: 'red',
+              backgroundColor: '#FFF'
+            },{
+              label: 'P*(Y = i, X = j)',
+              data: [
+                ...pxy[0],
+                ...pxy[1],
+                ...pxy[2],
+                ...pxy[3],
+                ...pxy[4],
+                ...pxy[5],
+                ],
+              borderWidth: 1,
+              borderColor: 'dodgerblue',
+              backgroundColor: '#FFF',
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        function callme() {
+          chart.data.datasets[0].data = [
+                1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1,
+                1, 1, 1, 0.5, 1, 1,
+                1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1
+              ];
+          chart.update();
+        }
+    </script>
+  </body>
+</html>
