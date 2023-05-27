@@ -262,7 +262,7 @@
             _id = setInterval(() => {
             _lancer();
             _n++;
-            if (_n % 10 == 0) {
+            if (_n % 30 == 0) {
               chart.data.datasets[1].data = [
                     ...pxy[0],
                     ...pxy[1],
@@ -273,7 +273,7 @@
               ];
               chart.update();
             }
-          }, 30);
+          }, 1);
         });
 
         u('#reset').on('click', () => {
