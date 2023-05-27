@@ -118,6 +118,12 @@
                 <p>\( N = \) <span id="n-counter">0</span></p>
               </div>
             </div>
+
+            <div class="row">
+              <div class="col-6">
+                <canvas id="myChart2"></canvas>
+              </div>
+            </div>
           </div>
         </div>
     </div>
@@ -126,6 +132,33 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+
+      const ctx2 = document.getElementById('myChart2');
+
+      const tmpChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: ['D1', 'D2'],
+          datasets: [{
+            label: 'resultat',
+            data: [4, 6],
+            borderWidth: 2,
+            backgroundColor: ['#30A2FF', '#FC2947'],
+            borderColor: '#C9EEFF'
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              // beginAtZero: true
+              suggestedMin: 0,
+              suggestedMax: 6
+            }
+          }
+        }
+      });
+
+
         const ideal_p = [
           [0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0],
@@ -252,6 +285,8 @@
           update_lc('loi-conjointe-e1', pxy);
           u('#dice-1').attr('src', 'd/' + (x+1) + '.jpg');
           u('#dice-2').attr('src', 'd/' + (y+1) + '.jpg');
+
+          return [_x+1, _y+1];
         }
 
         var _n = 0;
@@ -260,7 +295,7 @@
         u('#start').on('click', () => {
             if (_id != 0) return;
             _id = setInterval(() => {
-            _lancer();
+            var _a = _lancer();
             _n++;
             if (_n % 30 == 0) {
               chart.data.datasets[1].data = [
@@ -272,6 +307,9 @@
                     ...pxy[5],
               ];
               chart.update();
+
+              tmpChart.data.datasets[0].data = _a;
+              tmpChart.update();
             }
           }, 1);
         });
