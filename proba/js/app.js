@@ -108,7 +108,7 @@ const QA = [
     },
     {
         _qa: [
-            'Soit\\( X \\) et \\( Y \\) deux variables aléatoires discrètes indépendantes. Quelle est la formule permettant de calculer la probabilité conjointe \\( P(X=x, Y=y) \\)?',
+            'Soit \\( X \\) et \\( Y \\) deux variables aléatoires discrètes indépendantes. Quelle est la formule permettant de calculer la probabilité conjointe \\( P(X=x, Y=y) \\)?',
             '\\( P(X=x) + P(Y=y) \\)',
             '\\( P(X=x)P(Y=y) \\)',
             '\\( P(X=x) - P(Y=y) \\)',
