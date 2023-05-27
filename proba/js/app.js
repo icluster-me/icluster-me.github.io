@@ -250,7 +250,7 @@ qaList.forEach((qa, idx) => {
             if (qaQueue[2] != -1) {
                 clearInterval(qaQueue[2]);
                 u('#countdown').text(
-                    (selectedAnswer == qaQueue[1]) ? '😎 CORRECT 😎': '🙊 WRONG 🙊'
+                    (selectedAnswer == qaQueue[1]) ? '🙂 VRAI 🙂': '🤬 FAUX 🤬'
                 )
 
                 // u('.countdown-container').addClass('d-none');
