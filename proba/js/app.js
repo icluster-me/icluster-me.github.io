@@ -174,14 +174,6 @@ function pickRandomPlayer(callback = undefined) {
             cardId = 3 + Math.floor(Math.random() * (STUDENTS_LIST.length-7));
         }
 
-        if (counter == 0) {
-            switch (currentQID) {
-                case 1: cardId = 1; break;
-                case 2: cardId = 22; break;
-                case 4: cardId = 21; break;
-            }
-        }
-
         toggleCard(cardId);
         prevCardId = cardId;
         if (counter == 0) {
