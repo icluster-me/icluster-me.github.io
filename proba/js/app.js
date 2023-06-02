@@ -1,7 +1,6 @@
 const STUDENTS_LIST = [
     'TAREK',
     'AHLAM',
-    'JAWHARA',
     'SAMIRA',
     'MAJDA',
     'HAJAR C',
