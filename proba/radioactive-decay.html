@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>LAB</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <style>
+        * {
+            font-family: Roboto;
+        }
+
+        #radioactive-decay-canvas {
+            width: 400px;
+            height: 400px;
+            background: #03001C;
+        }
+
+        .dbg {
+            /* border: 1px solid orangered; */
+            flex: 1;
+            width: 100%;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container">
+        <div class="row my-2">
+            <div class="col col-md-6 order-1 order-md-0">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <div class="col col-md-6 d-flex justify-content-center order-0 order-md-1">
+                <canvas id="radioactive-decay-canvas"></canvas>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="row">
+            <div class="col col-md-6 d-flex flex-column align-items-start justify-content-start my-2">
+                <div class="d-flex align-items-center justify-content-between dbg my-2">
+                    <label class="form-label" for="dt">\( \Delta t \) = <span id="dt-val">200</span> ms</label>
+                    <div class="range mx-4">
+                        <input type="range" class="form-range" min="10" max="500" step="10" value="200" id="dt" />
+                    </div>
+
+                    <label class="form-label" for="dt">\( \lambda \) = <span id="lambda-val">0</span></label>
+                    <div class="range mx-4">
+                        <input type="range" class="form-range" min="0" max="1" step="0.05" value="0" id="lambda" />
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center justify-content-end dbg my-2">
+                    <label class="form-label" for="N0">\( N_0 \) = <span id="N0-val">200</span></label>
+                    <div class="range mx-4">
+                        <input type="range" class="form-range" min="100" max="500" step="10" value="200" id="N0" />
+                    </div>
+                </div>
+
+                <button id="simulate" type="button" class="btn btn-outline-primary" data-mdb-ripple-color="#000000">simulate</button>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer class=" text-center ">
+        <div class="text-center p-3 d-flex align-items-center justify-content-center">
+            <img src="reactor.png" class="mx-2" width="32px" alt="reactor">
+            <p class="mx-2 my-0">RADIOACTIVE DECAY SIMULATOR</p>
+            <img src="reactor.png" class="mx-2" width="32px" alt="reactor">
+        </div>
+    </footer>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/umbrellajs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const chartCtx = document.getElementById('myChart');
+
+        var xValues = [];
+        var yValues = [];
+
+        // for (var i=0; i<a.length; i++) {
+        //     xValues.push(i);
+        // }
+
+        // for (var i=0; i<a.length; i++) {
+        //     yValues.push(a[i][0]);
+        // }
+
+
+
+        const chart = new Chart(chartCtx, {
+            type: 'line',
+            data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'N(t)',
+                        data: yValues,
+                        borderColor: 'red',
+                        fill: false,
+                        spanGaps: true
+                    },{
+                        label: 'y(t)',
+                        data: [],
+                        borderColor: 'blue',
+                        fill: false,
+                        spanGaps: true
+                    }]
+                },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (years)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'N'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="js/radioactive-decay.js"></script>
+  </body>
+</html>
