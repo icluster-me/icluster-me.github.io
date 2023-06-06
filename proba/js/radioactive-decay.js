@@ -130,7 +130,7 @@ u('#simulate').on('click', evt => {
         var r = radioactive_decay();
         N++;
         chart.data.labels.push(N);
-        chart.data.datasets[0].data.push(r[0]);
+        chart.data.datasets[0].data.push(r[0] * 1000);
         chart.update();
         // console.log(chart);
 
